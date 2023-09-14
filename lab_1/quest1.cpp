@@ -2,7 +2,7 @@
 
 using namespace std;
 
-template <class Type>
+template <typename Type>
 class Vector {
    private:
     Type *elements = nullptr;
