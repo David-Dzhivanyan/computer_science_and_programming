@@ -26,10 +26,10 @@ template <typename Type>
 concept is_pointer_check = !is_pointer<Type>::value;
 
 template <typename Type>
-concept StringLike = !is_convertible_v<Type, string>;
+concept String_like = !is_convertible_v<Type, string>;
 
 template <typename Type>
-concept final_concept = is_pointer_check<Type> && StringLike<Type>;
+concept final_concept = is_pointer_check<Type> && String_like<Type>;
 
 template <typename Type>
 requires final_concept<Type>
@@ -118,34 +118,35 @@ class Vector {
 template <>
 class Vector<Coordinates> {
    private:
-    Coordinates *elements = nullptr;
-    size_t size_count = 2;
+    Coordinates elements;
+    size_t size_count;
 
    public:
-    Vector(Coordinates A, Coordinates B) {
-        elements = new Coordinates[2];
-        elements[0] = A;
-        elements[1] = B;
+    Vector(Coordinates A) {
+        size_count = 2;
+        elements = A;
     }
+    //
+    //    Coordinates get_elements(){return }
 
-    double distance() {
-        double first = pow(cos(elements[1].get_latitude_r()) *
-                               sin(elements[0].get_longitude_r() - elements[1].get_longitude_r()),
+    double distance(Vector<Coordinates> &vector) {
+        double first = pow(cos(vector.elements.get_latitude_r()) *
+                               sin(elements.get_longitude_r() - vector.elements.get_longitude_r()),
                            2);
-        double second = pow(cos(elements[0].get_latitude_r()) * sin(elements[1].get_latitude_r()) -
-                                sin(elements[0].get_latitude_r()) * cos(elements[1].get_latitude_r()) *
-                                    cos(elements[0].get_longitude_r() - elements[1].get_longitude_r()),
+        double second = pow(cos(elements.get_latitude_r()) * sin(vector.elements.get_latitude_r()) -
+                                sin(elements.get_latitude_r()) * cos(vector.elements.get_latitude_r()) *
+                                    cos(elements.get_longitude_r() - vector.elements.get_longitude_r()),
                             2);
-        double third = sin(elements[0].get_latitude_r()) * sin(elements[1].get_latitude_r());
-        double fourth = cos(elements[0].get_latitude_r()) * cos(elements[1].get_latitude_r()) *
-                        cos(elements[0].get_longitude_r() - elements[1].get_longitude_r());
+        double third = sin(elements.get_latitude_r()) * sin(vector.elements.get_latitude_r());
+        double fourth = cos(elements.get_latitude_r()) * cos(vector.elements.get_latitude_r()) *
+                        cos(elements.get_longitude_r() - vector.elements.get_longitude_r());
 
         double b = atan((sqrt(first + second)) / (third + fourth));
         b *= 6372795;
         return b / 1000.;
     }
 
-    ~Vector() { delete[] elements; }
+    ~Vector() {}
 };
 
 int main() {
@@ -162,7 +163,8 @@ int main() {
     Coordinates a(48.707067, 44.516975);  // Vlg
     Coordinates b(55.755864, 37.617698);  // Msk
 
-    Vector<Coordinates> V1(a, b);
+    Vector<Coordinates> V1(a);
+    Vector<Coordinates> V2(b);
 
-    cout << V1.distance() << "km" << endl;
+    cout << V1.distance(V2) << "km" << endl;
 }
