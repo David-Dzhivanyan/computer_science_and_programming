@@ -1,0 +1,5 @@
+Name: dzhivanyan
+Familia: david
+Sex: 1
+Work: 0
+Study: 1
