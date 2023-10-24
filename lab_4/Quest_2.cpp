@@ -115,11 +115,11 @@ int main() {
     cout << "Number of words: " << count << endl;
 
     string new_key;
-    cout << "Введите ключ: ";
+    cout << "Enter the key: ";
     cin >> new_key;
 
     string new_value;
-    cout << "Введите новое значение: ";
+    cout << "Enter the new value: ";
     cin >> new_value;
 
     auto it3 = word_frequency.find(new_key);
