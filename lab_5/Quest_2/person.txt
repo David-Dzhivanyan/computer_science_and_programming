@@ -1,0 +1,7 @@
+Name: dzhivanyan
+Familia: david
+Series: 1234
+Number: 123345
+Sex: 1
+Work: 1
+Study: 1
