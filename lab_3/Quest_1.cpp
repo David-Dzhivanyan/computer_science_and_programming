@@ -56,7 +56,7 @@ int main() {
 
     cout << "Enter the maximum value to generate: ";
     cin >> max;
-    
+
     vector<Fraction> vector1, vector2;
 
     // Заполняем первый вектор случайными дробями
@@ -70,11 +70,11 @@ int main() {
     }
 
     // Выводим элементы первого вектора
-    cout << "Первый вектор: ";
+    cout << "First vector: ";
     ptintFraction(vector1);
 
     // Выводим элементы второго вектора
-    cout << "Второй вектор: ";
+    cout << "Second vector: ";
     ptintFraction(vector2);
 
 //    vector1.reserve(10);
@@ -117,5 +117,5 @@ int main() {
 //    - reserve(size_type) резервирует память вектора для будущего использования, чтобы предотвратить неэффективные повторные выделения памяти,
 //    когда элементы добавляются в вектор. Размер фактических элементов вектора после вызова reserve() остается неизменным.
     return 0;
-    
+
 }
